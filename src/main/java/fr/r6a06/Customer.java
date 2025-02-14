@@ -8,6 +8,10 @@ public class Customer {
 
     private Vector<Rental> _rentals = new Vector<Rental>();
 
+    private double totalAmount = 0;
+
+    private int frequentRenterPoints = 0;
+
     public Customer(String name) {
         _name = name;
     }
@@ -16,14 +20,19 @@ public class Customer {
         _rentals.add(arg);
     }
 
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public int getFrequentRenterPoints() {
+        return frequentRenterPoints;
+    }
+
     public String getName() {
         return _name;
     }
 
     public String statement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
-
         Enumeration rentals = _rentals.elements();
 
         String result = "Record for " + getName() + "\n";
@@ -39,8 +48,8 @@ public class Customer {
         }
 
         //add footer lines
-        result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints) +
+        result += "Amount owed is " + String.valueOf(getTotalAmount()) + "\n";
+        result += "You earned " + String.valueOf(getFrequentRenterPoints()) +
                 " frequent renter points";
         return result;
     }
